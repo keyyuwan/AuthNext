@@ -1,0 +1,56 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  padding: 0 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    align-self: flex-start;
+  }
+
+  form {
+    height: 320px;
+    width: 100%;
+    margin-top: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > div {
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+.signInButton {
+  margin-top: 2rem;
+  width: 100%;
+  height: 50px;
+  border: 0;
+  border-radius: 8px;
+  font-weight: bold;
+
+  background: var(--pink);
+}
+
+.divider {
+  height: 2px;
+  width: 100%;
+  background: var(--light-dark);
+}
+
+.socialButtonsContainer {
+  margin-top: 2rem;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
