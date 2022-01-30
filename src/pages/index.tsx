@@ -1,3 +1,5 @@
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
 import { FormEvent, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Input } from "../components/Input";
@@ -61,3 +63,20 @@ export default function Auth() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookies = parseCookies(ctx);
+
+  if (cookies["@auth:token"]) {
+    return {
+      redirect: {
+        destination: "/home",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

@@ -54,7 +54,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const { "@auth:token": token } = parseCookies();
 
     if (token) {
-      api.get("/me").then((response) => setUser(response.data));
+      api
+        .get("/me")
+        .then((response) => setUser(response.data))
+        .catch(() => {
+          signOut();
+        });
     }
   }, []);
 
