@@ -1,6 +1,7 @@
 .container {
   height: 100vh;
-  width: 100vw;
+  max-width: 1120px;
+  margin: 0 auto;
   padding: 0 2rem;
 
   display: flex;
@@ -8,21 +9,29 @@
   align-items: center;
   justify-content: center;
 
-  h1 {
-    align-self: flex-start;
+  .formContainer {
+    width: 100%;
+
+    form {
+      margin-top: 1rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      > div {
+        margin-top: 1.5rem;
+      }
+    }
   }
 
-  form {
-    height: 320px;
-    width: 100%;
-    margin-top: 1rem;
+  @media (min-width: 1025px) {
+    flex-direction: row;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    > div {
-      margin-top: 1.5rem;
+    .formContainer {
+      form {
+        margin-top: 0;
+      }
     }
   }
 }
@@ -36,16 +45,28 @@
   font-weight: bold;
 
   background: var(--pink);
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
 }
 
 .divider {
   height: 2px;
   width: 100%;
   background: var(--light-dark);
+  margin: 2rem 0;
+
+  @media (min-width: 1025px) {
+    margin: 0 4rem;
+    height: 240px;
+    width: 2px;
+  }
 }
 
 .socialButtonsContainer {
-  margin-top: 2rem;
   width: 100%;
 
   display: flex;
