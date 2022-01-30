@@ -1,0 +1,44 @@
+.container {
+  height: 100vh;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userInfoContainer {
+  width: 100%;
+  min-height: 320px;
+  border-radius: 8px;
+  padding: 1rem;
+
+  background: var(--light-dark);
+
+  h1 {
+    color: var(--pink);
+  }
+
+  .userInfo {
+    margin-top: 2rem;
+
+    strong {
+      display: block;
+      word-break: break-all;
+
+      & + strong {
+        margin-top: 1rem;
+      }
+
+      span {
+        color: var(--pink);
+      }
+    }
+  }
+
+  @media (min-width: 1025px) {
+    width: 480px;
+  }
+}

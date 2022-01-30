@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { api } from "../services/apiClient";
 import { setupAPIClient } from "../services/api";
 import { withSSRAuth } from "../utils/withSSRAuth";
+import styles from "../styles/home.module.scss";
 
 export default function Home() {
   const { user } = useAuth();
@@ -12,11 +13,16 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <br />
-      <br />
-      <h2>{user?.email}</h2>
+    <div className={styles.container}>
+      <div className={styles.userInfoContainer}>
+        <h1>User Information:</h1>
+
+        <div className={styles.userInfo}>
+          <strong>
+            <span>E-mail: </span> {user?.email}
+          </strong>
+        </div>
+      </div>
     </div>
   );
 }
