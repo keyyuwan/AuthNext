@@ -7,7 +7,7 @@ import {
 } from "react";
 import Router from "next/router";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
-import { api } from "../services/api";
+import { api } from "../services/apiClient";
 
 interface UserInfo {
   email: string;

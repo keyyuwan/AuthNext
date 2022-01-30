@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { api } from "../services/api";
+import { api } from "../services/apiClient";
+import { setupAPIClient } from "../services/api";
 import { withSSRAuth } from "../utils/withSSRAuth";
 
 export default function Home() {
@@ -20,7 +21,13 @@ export default function Home() {
   );
 }
 
-export const getServerSideProps = withSSRAuth(async () => {
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+  const apiClient = setupAPIClient(ctx);
+
+  const response = await apiClient.get("/me");
+
+  console.log(response.data);
+
   return {
     props: {},
   };
