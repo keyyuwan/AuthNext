@@ -1,10 +1,9 @@
-import { GetServerSideProps } from "next";
-import { parseCookies } from "nookies";
 import { FormEvent, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Input } from "../components/Input";
 import { SocialButton } from "../components/SocialButton";
 import { useAuth } from "../contexts/AuthContext";
+import { withSSRGuest } from "../utils/withSSRGuest";
 import styles from "./auth.module.scss";
 
 export default function Auth() {
@@ -64,19 +63,8 @@ export default function Auth() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const cookies = parseCookies(ctx);
-
-  if (cookies["@auth:token"]) {
-    return {
-      redirect: {
-        destination: "/home",
-        permanent: false,
-      },
-    };
-  }
-
+export const getServerSideProps = withSSRGuest(async () => {
   return {
     props: {},
   };
-};
+});
