@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { api } from "../services/api";
+import { withSSRAuth } from "../utils/withSSRAuth";
 
 export default function Home() {
   const { user } = useAuth();
@@ -18,3 +19,9 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = withSSRAuth(async () => {
+  return {
+    props: {},
+  };
+});

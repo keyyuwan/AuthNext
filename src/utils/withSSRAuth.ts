@@ -5,16 +5,16 @@ import {
 } from "next";
 import { parseCookies } from "nookies";
 
-export function withSSRGuest<P>(fn: GetServerSideProps<P>) {
+export function withSSRAuth<P>(fn: GetServerSideProps<P>) {
   return async (
     ctx: GetServerSidePropsContext
   ): Promise<GetServerSidePropsResult<P>> => {
     const cookies = parseCookies(ctx);
 
-    if (cookies["@auth:token"]) {
+    if (!cookies["@auth:token"]) {
       return {
         redirect: {
-          destination: "/home",
+          destination: "/",
           permanent: false,
         },
       };
