@@ -10,7 +10,7 @@ export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn } = useAuth();
+  const { signIn, isAuthLoading } = useAuth();
 
   async function handleSignIn(event: FormEvent) {
     event.preventDefault();
@@ -42,7 +42,7 @@ export default function Auth() {
           />
 
           <button type="submit" className={styles.signInButton}>
-            Sign In
+            {isAuthLoading ? "..." : "Sign In"}
           </button>
         </form>
       </div>

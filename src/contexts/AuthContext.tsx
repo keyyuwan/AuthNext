@@ -31,6 +31,7 @@ interface AuthContextData {
   signIn: (userInfo: UserInfo) => Promise<void>;
   user: User;
   isAuthenticated: boolean;
+  isAuthLoading: boolean;
 }
 
 interface AuthProviderProps {
@@ -63,7 +64,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }, []);
 
+  const [isAuthLoading, setIsAuthLoading] = useState(false);
+
   async function signIn(userInfo: UserInfo) {
+    setIsAuthLoading(true);
+
     try {
       const { data } = await api.post<SignInResponse>("/sessions", userInfo);
 
@@ -90,11 +95,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       Router.push("/home");
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsAuthLoading(false);
     }
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, user, isAuthenticated }}>
+    <AuthContext.Provider
+      value={{ signIn, user, isAuthenticated, isAuthLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );
