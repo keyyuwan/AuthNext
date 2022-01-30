@@ -78,5 +78,7 @@ api.interceptors.response.use(
         signOut();
       }
     }
+
+    return Promise.reject(error);
   }
 );
