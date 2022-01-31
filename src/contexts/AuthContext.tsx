@@ -41,9 +41,13 @@ interface AuthProviderProps {
 
 const AuthContext = createContext({} as AuthContextData);
 
+let authChannel: BroadcastChannel;
+
 export function signOut() {
   destroyCookie(undefined, "@auth:token");
   destroyCookie(undefined, "@auth:refreshToken");
+
+  authChannel.postMessage("signOut");
 
   Router.push("/");
 }
@@ -51,6 +55,16 @@ export function signOut() {
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = !!user;
+
+  useEffect(() => {
+    authChannel = new BroadcastChannel("auth");
+
+    authChannel.onmessage = (message) => {
+      if (message.data === "signOut") {
+        signOut();
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const { "@auth:token": token } = parseCookies();
