@@ -29,6 +29,7 @@ interface User {
 
 interface AuthContextData {
   signIn: (userInfo: UserInfo) => Promise<void>;
+  signOut: () => void;
   user: User;
   isAuthenticated: boolean;
   isAuthLoading: boolean;
@@ -102,7 +103,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ signIn, user, isAuthenticated, isAuthLoading }}
+      value={{ signIn, signOut, user, isAuthenticated, isAuthLoading }}
     >
       {children}
     </AuthContext.Provider>

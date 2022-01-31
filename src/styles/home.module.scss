@@ -17,8 +17,14 @@
 
   background: var(--light-dark);
 
-  h1 {
-    color: var(--pink);
+  .userInfoHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+      color: var(--pink);
+    }
   }
 
   .userInfo {
