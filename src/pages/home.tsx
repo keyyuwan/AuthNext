@@ -1,9 +1,16 @@
 import { useEffect } from "react";
+import Link from "next/link";
+
 import { useAuth } from "../contexts/AuthContext";
+
 import { api } from "../services/apiClient";
 import { setupAPIClient } from "../services/api";
+
 import { withSSRAuth } from "../utils/withSSRAuth";
+
 import { SignOutButton } from "../components/SignOutButton";
+import { Permission } from "../components/Permission";
+
 import styles from "../styles/home.module.scss";
 
 export default function Home() {
@@ -27,6 +34,12 @@ export default function Home() {
           </strong>
         </div>
       </div>
+
+      <Permission permissions={["metrics.list"]}>
+        <Link href="/metrics">
+          <button className={styles.metricsButton}>Metrics</button>
+        </Link>
+      </Permission>
     </div>
   );
 }
