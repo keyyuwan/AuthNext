@@ -1,3 +1,5 @@
+import { withSSRAuth } from "../utils/withSSRAuth";
+
 export default function Metrics() {
   return (
     <div>
@@ -5,3 +7,14 @@ export default function Metrics() {
     </div>
   );
 }
+
+export const getServerSideProps = withSSRAuth(
+  async () => {
+    return {
+      props: {},
+    };
+  },
+  {
+    permissions: ["metrics.list"],
+  }
+);

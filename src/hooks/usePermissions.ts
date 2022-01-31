@@ -1,4 +1,5 @@
 import { useAuth } from "../contexts/AuthContext";
+import { validateUserPermissions } from "../utils/validateUserPermissions";
 
 interface UsePermissionsParams {
   permissions?: string[];
@@ -12,25 +13,11 @@ export function usePermissions({ permissions, roles }: UsePermissionsParams) {
     return false;
   }
 
-  if (permissions?.length > 0) {
-    const userHasAllPermissions = permissions.every((permission) =>
-      user.permissions.includes(permission)
-    );
+  const userHasValidPermissions = validateUserPermissions({
+    user,
+    permissions,
+    roles,
+  });
 
-    if (!userHasAllPermissions) {
-      return false;
-    }
-  }
-
-  if (roles?.length > 0) {
-    const userHasAtLeastOneRole = roles.some((role) =>
-      user.roles.includes(role)
-    );
-
-    if (!userHasAtLeastOneRole) {
-      return false;
-    }
-  }
-
-  return true;
+  return userHasValidPermissions;
 }
