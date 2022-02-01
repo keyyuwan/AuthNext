@@ -11,7 +11,7 @@ import { withSSRAuth } from "../utils/withSSRAuth";
 import { SignOutButton } from "../components/SignOutButton";
 import { Permission } from "../components/Permission";
 
-import styles from "../styles/home.module.scss";
+import styles from "../styles/pages/home.module.scss";
 
 export default function Home() {
   const { user } = useAuth();
