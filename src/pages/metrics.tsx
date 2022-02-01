@@ -1,48 +1,13 @@
 import { withSSRAuth } from "../utils/withSSRAuth";
+import { chartOptions } from "../utils/chartOptions";
 import { Chart } from "../components/Chart";
 import styles from "../styles/pages/metrics.module.scss";
 
 export default function Metrics() {
-  const options = {
-    chart: {
-      toolbar: {
-        show: false,
-      },
-      zoom: {
-        enabled: false,
-      },
-      foreColor: "var(--pink)",
-    },
-    grid: {
-      show: false,
-    },
-    tooltip: {
-      enabled: false,
-    },
-    xaxis: {
-      axisBorder: {
-        color: "var(--light-dark)",
-      },
-      axisTicks: {
-        color: "var(--gray-50)",
-      },
-      categories: ["Jan", "Fev", "Mar", "Apr", "May", "Jun"],
-    },
-    yaxis: {
-      show: false,
-    },
-    fill: {
-      opacity: 0.3,
-      type: "gradient",
-      gradient: {
-        shade: "dark",
-        opacityFrom: 0.8,
-        opacityTo: 0.5,
-      },
-    },
-  };
-
-  const series = [{ name: "New users", data: [3, 7, 9, 15, 30, 37] }];
+  const newUsersSeries = [{ data: [5, 10, 16, 22, 30, 34] }];
+  const socialAuthSeries = [{ data: [2, 5, 6, 13, 22, 31] }];
+  const githubAuthSeries = [{ data: [1, 3, 3, 6, 11, 25] }];
+  const googleAuthSeries = [{ data: [1, 2, 3, 7, 11, 6] }];
 
   return (
     <div className={styles.container}>
@@ -53,32 +18,32 @@ export default function Metrics() {
           title="New Users"
           type="area"
           height={160}
-          options={options}
-          series={series}
+          options={chartOptions}
+          series={newUsersSeries}
         />
 
         <Chart
           title="Social Authentication"
           type="area"
           height={160}
-          options={options}
-          series={series}
+          options={chartOptions}
+          series={socialAuthSeries}
         />
 
         <Chart
           title="Github Authentication"
           type="bar"
           height={160}
-          options={options}
-          series={series}
+          options={chartOptions}
+          series={githubAuthSeries}
         />
 
         <Chart
           title="Google Authentication"
           type="bar"
           height={160}
-          options={options}
-          series={series}
+          options={chartOptions}
+          series={googleAuthSeries}
         />
       </div>
     </div>
