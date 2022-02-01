@@ -1,10 +1,6 @@
-import dynamic from "next/dynamic";
 import { withSSRAuth } from "../utils/withSSRAuth";
+import { Chart } from "../components/Chart";
 import styles from "../styles/pages/metrics.module.scss";
-
-const Chart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
 
 export default function Metrics() {
   const options = {
@@ -53,25 +49,37 @@ export default function Metrics() {
       <h1>Metrics</h1>
 
       <div className={styles.content}>
-        <div className={styles.chart}>
-          <h2>New users</h2>
-          <Chart type="area" height={160} options={options} series={series} />
-        </div>
+        <Chart
+          title="New Users"
+          type="area"
+          height={160}
+          options={options}
+          series={series}
+        />
 
-        <div className={styles.chart}>
-          <h2>Social Authentication</h2>
-          <Chart type="area" height={160} options={options} series={series} />
-        </div>
+        <Chart
+          title="Social Authentication"
+          type="area"
+          height={160}
+          options={options}
+          series={series}
+        />
 
-        <div className={styles.chart}>
-          <h2>Github Authentication</h2>
-          <Chart type="bar" height={160} options={options} series={series} />
-        </div>
+        <Chart
+          title="Github Authentication"
+          type="bar"
+          height={160}
+          options={options}
+          series={series}
+        />
 
-        <div className={styles.chart}>
-          <h2>Google Authentication</h2>
-          <Chart type="bar" height={160} options={options} series={series} />
-        </div>
+        <Chart
+          title="Google Authentication"
+          type="bar"
+          height={160}
+          options={options}
+          series={series}
+        />
       </div>
     </div>
   );
