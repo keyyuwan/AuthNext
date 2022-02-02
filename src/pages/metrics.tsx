@@ -39,7 +39,7 @@ export default function Metrics() {
         />
 
         <Chart
-          title="Daily Visits Authentication"
+          title="Daily Visits"
           type="bar"
           height={160}
           options={chartOptions}
