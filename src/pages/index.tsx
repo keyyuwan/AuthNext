@@ -1,7 +1,5 @@
 import { FormEvent, useState } from "react";
-import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Input } from "../components/Input";
-import { SocialButton } from "../components/SocialButton";
 import { useAuth } from "../contexts/AuthContext";
 import { withSSRGuest } from "../utils/withSSRGuest";
 import styles from "./auth.module.scss";
@@ -45,19 +43,6 @@ export default function Auth() {
             {isAuthLoading ? "..." : "Sign In"}
           </button>
         </form>
-      </div>
-
-      <div className={styles.divider} />
-
-      <div className={styles.socialButtonsContainer}>
-        <SocialButton
-          icon={<FaGithub size="24" />}
-          title="Sign In with Github"
-        />
-        <SocialButton
-          icon={<FaGoogle size="24" />}
-          title="Sign In with Google"
-        />
       </div>
     </div>
   );

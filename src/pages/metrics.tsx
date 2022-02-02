@@ -5,9 +5,9 @@ import styles from "../styles/pages/metrics.module.scss";
 
 export default function Metrics() {
   const newUsersSeries = [{ data: [5, 10, 16, 22, 30, 34] }];
-  const socialAuthSeries = [{ data: [2, 5, 6, 13, 22, 31] }];
-  const githubAuthSeries = [{ data: [1, 3, 3, 6, 11, 25] }];
-  const googleAuthSeries = [{ data: [1, 2, 3, 7, 11, 6] }];
+  const monthlyVisitsSeries = [{ data: [2, 5, 6, 13, 22, 31] }];
+  const weeklyVisitsSeries = [{ data: [1, 3, 3, 6, 11, 25] }];
+  const dailyVisitsSeries = [{ data: [1, 2, 3, 7, 11, 6] }];
 
   return (
     <div className={styles.container}>
@@ -23,27 +23,27 @@ export default function Metrics() {
         />
 
         <Chart
-          title="Social Authentication"
+          title="Monthly Visits"
           type="area"
           height={160}
           options={chartOptions}
-          series={socialAuthSeries}
+          series={monthlyVisitsSeries}
         />
 
         <Chart
-          title="Github Authentication"
+          title="Weekly Visits"
           type="bar"
           height={160}
           options={chartOptions}
-          series={githubAuthSeries}
+          series={weeklyVisitsSeries}
         />
 
         <Chart
-          title="Google Authentication"
+          title="Daily Visits Authentication"
           type="bar"
           height={160}
           options={chartOptions}
-          series={googleAuthSeries}
+          series={dailyVisitsSeries}
         />
       </div>
     </div>
